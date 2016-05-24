@@ -193,50 +193,9 @@
                         <strong>20</strong>
                         .
                     </form>
-                    <section>
-                        <div>
-                            <ol class="row">
-                                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                                    <article class="product_pod">
-                                        <div class="image_container">
-                                            <a href="/zh-cn/catalogue/the-shellcoders-handbook_209/">
-                                                <img class="thumbnail" alt="The shellcoder's handbook" src="/media/cache/91/34/91343786f8f4b55ee5d7f71db6d193d7.jpg"></a>
-                                        </div>
-                                        <p class="star-rating ">
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                            <i class="icon-star"></i>
-                                        </p>
-                                        <h3>
-                                            <a title="The shellcoder's handbook" href="/zh-cn/catalogue/the-shellcoders-handbook_209/">The shellcoder's handbook</a>
-                                        </h3>
-                                        <div class="product_price">
-                                            <p class="price_color">£9.99</p>
-                                            <p class="instock availability">
-                                                <i class="icon-ok"></i>
-                                                有货
-                                            </p>
-                                            <form method="post" action="/zh-cn/basket/add/209/">
-                                                <input type="hidden" value="URG8Mqa02cHHon6CaygDqD7KbZQtKsUH" name="csrfmiddlewaretoken">
-                                                <input type="hidden" value="1" name="quantity" id="id_quantity">
-                                                <button data-loading-text="添加中..." class="btn btn-primary btn-block" type="submit">加入购物车</button>
-                                            </form>
-                                        </div>
-                                    </article>
-                                </li>
-                            </ol>
-                            <div>
-                                <ul class="pager">
-                                    <li class="current">第1页，共11页</li>
-                                    <li class="next">
-                                        <a href="?page=2">下一页</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
+                    {% block product %}
+                   
+                    {% endblock %}
                 </div>
 
             </div>

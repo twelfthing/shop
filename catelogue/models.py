@@ -75,6 +75,8 @@ class Product(models.Model):
 
     is_discountable = models.BooleanField(_("Is discountable?"), default=True)
 
+    status = models.IntegerField(_('Status'), default=0)
+
     class Meta:
         ordering = ['-date_created']
         verbose_name = _('Product')
@@ -83,7 +85,6 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-import django.
 @python_2_unicode_compatible
 class ProductImage(models.Model):
     product = models.ForeignKey(

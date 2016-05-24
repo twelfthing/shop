@@ -4,6 +4,59 @@
 
 
 
-{% block extra_js %}
-	<script src="{% static "js/app.js" %}" type="text/javascript"></script>
+{% block product %}
+<section>
+    <div>
+        {% for product in object_list %}
+            <ol class="row">
+                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                    <article class="product_pod">
+                        <div class="image_container">
+                            <a href="/zh-cn/catalogue/the-shellcoders-handbook_209/">
+                                <img class="thumbnail" alt="The shellcoder's handbook" src="/media/{{product.images.all.0.original}}">
+                            </a>
+                        </div>
+                        <p class="star-rating ">
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                            <i class="icon-star"></i>
+                        </p>
+                        <h3>
+                            <a title="The shellcoder's handbook" href="/zh-cn/catalogue/the-shellcoders-handbook_209/">{{product.title}}</a>
+                        </h3>
+                        <div class="product_price">
+                            <p class="price_color">£9.99</p>
+                            <p class="instock availability">
+                                <i class="icon-ok"></i>
+                                {% if product.is_discountable %}
+                                    {% trans "有货" %}
+                                {% else %}
+                                    {% trans "无货" %}
+                                {% endif %}
+                            </p>
+                            <form method="post" action="/zh-cn/basket/add/209/">
+                                <input type="hidden" value="URG8Mqa02cHHon6CaygDqD7KbZQtKsUH" name="csrfmiddlewaretoken">
+                                <input type="hidden" value="1" name="quantity" id="id_quantity">
+                                <button data-loading-text="添加中..." class="btn btn-primary btn-block" type="submit">加入购物车</button>
+                            </form>
+                        </div>
+                    </article>
+                </li>
+            </ol>
+        {% endfor %}
+
+        <div>
+            <ul class="pager">
+                <li class="current">第1页，共11页</li>
+                <li class="next">
+                    <a href="?page=2">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
 {% endblock %}
+
+
