@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load i18n %} 
+{% load staticfiles %} 
+{% block title %}所有产品 | {{ product.title }}{% endblock %}
+
+
+{% block leftblock %}
+{% block product %}
+<div id="messages">
+</div>
+<div class="content">
+    <div id="promotions">
+    </div>
+    <div id="content_inner">
+        <article class="product_page">
+            <!-- Start of product page -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="product_gallery" class="carousel">
+                        <div class="thumbnail">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="/media/{{product.images.all.0.original}}" alt="{{product.title}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 product_main">
+                    <h1>{{ product.title }}</h1>
+                    <p class="price_color">£9.99</p>
+                    <p class="instock availability">
+                        <i class="icon-ok"></i> 有货 (库存42件)
+                    </p>
+                    <p>
+                        <a id="write_review" href="/catalogue/the-shellcoders-handbook_209/reviews/add/#addreview" class="btn btn-success btn-sm">
+        写评论
+    </a>
+                    </p>
+                    <hr>
+                    <form id="add_to_basket_form" action="/basket/add/209/" method="post" class="add-to-basket">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="aGKbFWtskGLufIScQXzIcDaxbDvzEcsM">
+                        <input id="id_quantity" name="quantity" type="hidden" value="1">
+                        <button type="submit" class="btn btn-lg btn-primary btn-add-to-basket" value="加入购物车" data-loading-text="添加中...">加入购物车</button>
+                    </form>
+                    <button class="btn btn-lg btn-wishlist" disabled="disabled" title="请先登录再添加商品到心愿单">加入心愿单</button>
+                    <br>
+                </div>
+                <!-- /col-sm-6 -->
+            </div>
+            <!-- /row -->
+            <div id="product_description" class="sub-header">
+                <h2>{% trans "产品介绍" %}</h2>
+            </div>
+            <p>{{ product.description }}</p>
+            <div class="sub-header">
+                <h2>{% trans "产品信息" %}</h2>
+            </div>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>UPC</th>
+                        <td>{{ product.upc }}</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "商品种类" %}</th>
+                        <td>Book</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "价格 (不含税)" %}</th>
+                        <td>£9.99</td>
+                    </tr>
+                    <tr>
+                        <th>{% trans "价格（含税）" %}</th>
+                        <td>£9.99</td>
+                    </tr>
+                    <tr>
+                        <th>征税</th>
+                        <td>£0.00</td>
+                    </tr>
+                    <tr>
+                        <th>是否有货</th>
+                        <td>有货 (库存42件)</td>
+                    </tr>
+                    <tr>
+                        <th>评论个数</th>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <section>
+                <div id="reviews" class="sub-header">
+                    <h2>顾客评价</h2>
+                </div>
+                <p>
+                    此商品还没有评论
+                    <a href="/zh-cn/catalogue/the-shellcoders-handbook_209/reviews/add/#addreview">抢沙发</a>
+                </p>
+            </section>
+        </article>
+        <!-- End of product page -->
+    </div>
+</div>
+{% endblock %}
+{% endblock %}
+
+
+
+
+
+
+
+

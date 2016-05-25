@@ -75,7 +75,7 @@ class Product(models.Model):
 
     is_discountable = models.BooleanField(_("Is discountable?"), default=True)
 
-    status = models.IntegerField(_('Status'), default=0)
+    # status = models.IntegerField(_('Status'), default=0)
 
     class Meta:
         ordering = ['-date_created']

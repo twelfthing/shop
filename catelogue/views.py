@@ -30,10 +30,15 @@ class ProductDetailView(DetailView):
 
     template_name = 'catelogue/detail.html'
 
-    queryset = get_product_detail()
+    queryset = get_product_list()
 
     http_method_names = ['get', 'post']    
 
     def get_context_data(self, **kwargs):
+
+        self.queryset.get(slug=self.kwargs.get('slug'))
+
         context = super(ProductDetailView, self).get_context_data(**kwargs)
+
         return context
+
