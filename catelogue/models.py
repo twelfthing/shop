@@ -56,7 +56,7 @@ class Product(models.Model):
 
     attributes = models.ManyToManyField(
         Attribute,
-        #through='AttributeValue',
+        # through='AttributeValue',
         verbose_name=_("Attributes"),
         help_text=_("A product attribute is something that this product may "
                     "have, such as a size, as specified by its class"))
@@ -68,10 +68,9 @@ class Product(models.Model):
     date_updated = models.DateTimeField(
         _("Date updated"), auto_now=True, db_index=True)
 
-    categories = models.ManyToManyField(
-        Category, 
-        #through='ProductCategory', 
-        verbose_name=_("Categories"))
+    categories = models.ManyToManyField(Category,
+                                        # through='ProductCategory',
+                                        verbose_name=_("Categories"))
 
     is_discountable = models.BooleanField(_("Is discountable?"), default=True)
 
@@ -84,6 +83,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
 
 @python_2_unicode_compatible
 class ProductImage(models.Model):
@@ -103,6 +103,6 @@ class ProductImage(models.Model):
         ordering = ['display_order']
         verbose_name = _('ProductImage')
         verbose_name_plural = _('ProductImages')
-        
+
     def __str__(self):
         return u"Image of '%s'" % self.product

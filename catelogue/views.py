@@ -12,6 +12,8 @@ from django.views.generic.detail import DetailView
 
 from catelogue.query import get_product_list, get_product_detail
 
+
+
 class ProductListView(ListView):
 
     template_name = 'catelogue/home.html'
@@ -36,7 +38,7 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
 
-        self.queryset.get(slug=self.kwargs.get('slug'))
+        obj = self.queryset.get(slug=self.kwargs.get('slug'))
 
         context = super(ProductDetailView, self).get_context_data(**kwargs)
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'catelogue',
+    'partner',
     'debug_toolbar',
     
 ]
@@ -149,4 +150,4 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
-INTERNAL_IPS = ['127.0.0.1', '::1']
+INTERNAL_IPS = ['127.0.0.1','::1']

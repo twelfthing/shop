@@ -5,6 +5,18 @@
 
 
 {% block leftblock %}
+<div class="container-fluid page">
+    <div class="page_inner">
+        <ul class="breadcrumb">
+            <li>
+                <a href="/zh-cn/">主页</a>
+            </li>
+            <li class="active">所有产品</li>
+        </ul>
+
+                    
+                    
+
 {% block product %}
 <div id="messages">
 </div>
@@ -64,23 +76,15 @@
                     </tr>
                     <tr>
                         <th>{% trans "商品种类" %}</th>
-                        <td>Book</td>
+                        <td>{% for c in product.categories.all %} {{c.name}}, {% endfor %}</td>
                     </tr>
                     <tr>
-                        <th>{% trans "价格 (不含税)" %}</th>
-                        <td>£9.99</td>
-                    </tr>
-                    <tr>
-                        <th>{% trans "价格（含税）" %}</th>
-                        <td>£9.99</td>
-                    </tr>
-                    <tr>
-                        <th>征税</th>
-                        <td>£0.00</td>
+                        <th>{% trans "价格" %}</th>
+                        <td>{{ product.stockrecords }}</td>
                     </tr>
                     <tr>
                         <th>是否有货</th>
-                        <td>有货 (库存42件)</td>
+                        <td>有货 (库存{{ product.stockrecords }}件)</td>
                     </tr>
                     <tr>
                         <th>评论个数</th>
@@ -102,6 +106,7 @@
     </div>
 </div>
 {% endblock %}
+</div></div>
 {% endblock %}
 
 

@@ -9,10 +9,11 @@ from catelogue.models import Product, Category, Attribute
 
 def get_product_list(*args, **kwargs):
 
-    return Product.objects.all()
+
+	return Product.objects.all()
 
 
 def get_product_detail(slug, **kwargs):
-    
-    return Product.objects.get(slug=slug)
+
+	return Product.objects.get(slug=slug)
 
