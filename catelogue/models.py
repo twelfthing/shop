@@ -14,6 +14,35 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import get_language, pgettext_lazy
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.contenttypes.fields import GenericForeignKey
+from django.conf import settings
+
+
+@python_2_unicode_compatible
+class Partner(models.Model):
+
+    code = models.SlugField(_("Code"), max_length=128, unique=True)
+    name = models.CharField(
+        pgettext_lazy(u"Partner's name", u"Name"), max_length=128, blank=True)
+
+    description = models.TextField(_("description"), blank=True)
+
+    #: A partner can have users assigned to it. This is used
+    #: for access modelling in the permission-based dashboard
+    users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="partners",
+        blank=True, verbose_name=_("Users"))
+
+    @property
+    def display_name(self):
+        return self.name or self.code
+
+    class Meta:
+        ordering = ('name', 'code')
+        verbose_name = _('Fulfillment partner')
+        verbose_name_plural = _('Fulfillment partners')
+
+    def __str__(self):
+        return self.display_name
 
 
 @python_2_unicode_compatible
@@ -53,6 +82,9 @@ class Product(models.Model):
     slug = models.SlugField(_('Slug'), max_length=255, unique=False)
 
     description = models.TextField(_('Description'), blank=True)
+
+    partner = models.ForeignKey(Partner, related_name="products",
+                                verbose_name=_("Partner"))
 
     attributes = models.ManyToManyField(
         Attribute,

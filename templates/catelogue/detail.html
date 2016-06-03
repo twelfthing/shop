@@ -76,7 +76,7 @@
                     </tr>
                     <tr>
                         <th>{% trans "商品种类" %}</th>
-                        <td>{% for c in product.categories.all %} {{c.name}}, {% endfor %}</td>
+                        <td>{% for c in product.categories.all %} {{c.name}} {% endfor %}</td>
                     </tr>
                     <tr>
                         <th>{% trans "价格" %}</th>

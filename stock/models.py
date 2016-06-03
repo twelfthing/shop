@@ -12,45 +12,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import pgettext_lazy
 from django.conf import settings
 
-from catelogue.models import Product
+from catelogue.models import Product, Partner
 
 
-@python_2_unicode_compatible
-class Partner(models.Model):
-
-    code = models.SlugField(_("Code"), max_length=128, unique=True)
-    name = models.CharField(
-        pgettext_lazy(u"Partner's name", u"Name"), max_length=128, blank=True)
-
-    #: A partner can have users assigned to it. This is used
-    #: for access modelling in the permission-based dashboard
-    users = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="partners",
-        blank=True, verbose_name=_("Users"))
-
-    @property
-    def display_name(self):
-        return self.name or self.code
-
-    class Meta:
-        ordering = ('name', 'code')
-        verbose_name = _('Fulfillment partner')
-        verbose_name_plural = _('Fulfillment partners')
-
-    def __str__(self):
-        return self.display_name
 
 
-@python_2_unicode_compatible
+
 class StockRecord(models.Model):
-
-    product = models.ForeignKey(Product, related_name="stockrecords",
-                                verbose_name=_("Product"))
-    partner = models.ForeignKey(Partner, verbose_name=_("Partner"),
-                                related_name='stockrecords')
-
-
-    partner_sku = models.CharField(_("Partner SKU"), max_length=128)
 
     # Price info:
     price_currency = models.CharField(
@@ -80,15 +48,8 @@ class StockRecord(models.Model):
     date_updated = models.DateTimeField(_("Date updated"), auto_now=True,
                                         db_index=True)
 
-    def __str__(self):
-        msg = u"Partner: %s, product: %s" % (
-            self.partner.display_name, self.product,)
-        if self.partner_sku:
-            msg = u"%s (%s)" % (msg, self.partner_sku)
-        return msg
-
+    
     class Meta:
-        unique_together = ('partner', 'partner_sku')
         verbose_name = _("Stock record")
         verbose_name_plural = _("Stock records")
 
@@ -152,7 +113,7 @@ class StockAlert(models.Model):
     A stock alert. E.g. used to notify users when a product is 'back in stock'.
     """
     stockrecord = models.ForeignKey(
-        'partner.StockRecord', related_name='alerts',
+        StockRecord, related_name='alerts',
         verbose_name=_("Stock Record"))
     threshold = models.PositiveIntegerField(_("Threshold"))
     OPEN, CLOSED = "Open", "Closed"
@@ -179,3 +140,6 @@ class StockAlert(models.Model):
         ordering = ('-date_created',)
         verbose_name = _('Stock alert')
         verbose_name_plural = _('Stock alerts')
+
+
+        
