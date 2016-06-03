@@ -80,11 +80,11 @@
                     </tr>
                     <tr>
                         <th>{% trans "价格" %}</th>
-                        <td>{{ product.stockrecords }}</td>
+                        <td>{{ product.stockrecords.all.0.cost_price }}</td>
                     </tr>
                     <tr>
                         <th>是否有货</th>
-                        <td>有货 (库存{{ product.stockrecords }}件)</td>
+                        <td>有货 (库存{{ product.stockrecords.all.0.num_in_stock }}件)</td>
                     </tr>
                     <tr>
                         <th>评论个数</th>

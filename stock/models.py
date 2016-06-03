@@ -15,10 +15,10 @@ from django.conf import settings
 from catelogue.models import Product, Partner
 
 
-
-
-
 class StockRecord(models.Model):
+
+    product = models.ForeignKey(
+        Product, verbose_name='product', related_name='stockrecords')
 
     # Price info:
     price_currency = models.CharField(
@@ -48,7 +48,6 @@ class StockRecord(models.Model):
     date_updated = models.DateTimeField(_("Date updated"), auto_now=True,
                                         db_index=True)
 
-    
     class Meta:
         verbose_name = _("Stock record")
         verbose_name_plural = _("Stock records")
@@ -140,6 +139,3 @@ class StockAlert(models.Model):
         ordering = ('-date_created',)
         verbose_name = _('Stock alert')
         verbose_name_plural = _('Stock alerts')
-
-
-        

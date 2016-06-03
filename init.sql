@@ -7,4 +7,4 @@ insert into catelogue_category values (1,'Books','','','books');
 insert into catelogue_product_categories values (1,1,1);
 insert into catelogue_partner values(1,'JD','京东','');
 
-insert into stock_stockrecord values ('CNY',9.99,65,0,0,'2016-05-11 15:32:49.831772','2016-05-11 15:32:49.831800');
+insert into stock_stockrecord values ('CNY',9.99,65,0,0,'2016-05-11 15:32:49.831772','2016-05-11 15:32:49.831800',1);

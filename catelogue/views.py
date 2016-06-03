@@ -38,6 +38,9 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
 
+        print dir(self.request)
+
+
         obj = self.queryset.get(slug=self.kwargs.get('slug'))
 
         context = super(ProductDetailView, self).get_context_data(**kwargs)
